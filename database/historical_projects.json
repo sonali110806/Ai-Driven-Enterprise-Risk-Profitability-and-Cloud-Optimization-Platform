@@ -1,0 +1,44 @@
+[
+{
+"project_name":"Online Payment Gateway",
+"domain":"FinTech",
+"budget":600000,
+"actual_cost":750000,
+"estimated_timeline":7,
+"actual_timeline":9,
+"team_size":10,
+"technologies_used":["Java","Spring Boot"],
+"delay_occurred":true,
+"cost_overrun":true,
+"final_profit":90000,
+"risk_level":"High"
+},
+{
+"project_name":"Food Delivery App",
+"domain":"Retail",
+"budget":400000,
+"actual_cost":420000,
+"estimated_timeline":5,
+"actual_timeline":6,
+"team_size":7,
+"technologies_used":["Flutter","Firebase"],
+"delay_occurred":true,
+"cost_overrun":false,
+"final_profit":60000,
+"risk_level":"Medium"
+},
+{
+"project_name":"Hospital Record System",
+"domain":"Healthcare",
+"budget":500000,
+"actual_cost":480000,
+"estimated_timeline":6,
+"actual_timeline":6,
+"team_size":8,
+"technologies_used":["React","NodeJS"],
+"delay_occurred":false,
+"cost_overrun":false,
+"final_profit":120000,
+"risk_level":"Low"
+}
+]
