@@ -1,0 +1,16 @@
+const mongoose = require("./db");
+
+const ProjectSchema = new mongoose.Schema({
+  project_name: String,
+  client_name: String,
+  domain: String,
+  budget: Number,
+  expected_timeline_months: Number,
+  team_size: Number,
+  tech_stack: [String],
+  cloud_provider: String,
+  project_manager: String,
+  start_date: Date
+});
+
+module.exports = mongoose.model("Project", ProjectSchema);
