@@ -1,0 +1,18 @@
+[
+{
+"project_name":"Banking Mobile App",
+"cloud_provider":"AWS",
+"storage_used_gb":400,
+"compute_hours":600,
+"monthly_cloud_cost":2500,
+"network_usage_gb":150
+},
+{
+"project_name":"E-Commerce Platform",
+"cloud_provider":"Azure",
+"storage_used_gb":550,
+"compute_hours":720,
+"monthly_cloud_cost":3100,
+"network_usage_gb":200
+}
+]
