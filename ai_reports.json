@@ -1,0 +1,29 @@
+[
+{
+"project_name":"Banking Mobile App",
+"risk_score":0.72,
+"profitability_score":0.55,
+"delay_probability":0.68,
+"cost_overrun_probability":0.60,
+"predicted_risk_level":"High",
+"predicted_profit":120000,
+"ai_suggestions":[
+"Increase development team size",
+"Extend timeline by 1 month",
+"Allocate extra cloud budget"
+]
+},
+{
+"project_name":"E-Commerce Platform",
+"risk_score":0.45,
+"profitability_score":0.70,
+"delay_probability":0.40,
+"cost_overrun_probability":0.35,
+"predicted_risk_level":"Medium",
+"predicted_profit":200000,
+"ai_suggestions":[
+"Optimize backend performance",
+"Monitor cloud cost usage"
+]
+}
+]
