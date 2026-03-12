@@ -1,0 +1,12 @@
+{
+  "project_name": "Digital Banking Platform",
+  "client_name": "ABC Bank",
+  "domain": "FinTech",
+  "budget": 750000,
+  "expected_timeline_months": 8,
+  "team_size": 12,
+  "tech_stack": ["React", "Node.js", "MongoDB"],
+  "cloud_provider": "AWS",
+  "project_manager": "Rahul Sharma",
+  "start_date": "2026-04-01"
+}
