@@ -1,0 +1,8 @@
+{
+  "project_name": "Digital Banking Platform",
+  "cloud_provider": "AWS",
+  "storage_used_gb": 520,
+  "compute_hours": 850,
+  "monthly_cloud_cost": 3200,
+  "network_usage_gb": 240
+}
