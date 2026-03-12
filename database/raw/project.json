@@ -1,0 +1,26 @@
+[
+{
+"project_name":"Banking Mobile App",
+"client_name":"ABC Bank",
+"domain":"FinTech",
+"budget":500000,
+"expected_timeline_months":6,
+"team_size":8,
+"tech_stack":["React","NodeJS","MongoDB"],
+"cloud_provider":"AWS",
+"project_manager":"Rahul Sharma",
+"start_date":"2026-04-01"
+},
+{
+"project_name":"E-Commerce Platform",
+"client_name":"ShopKart",
+"domain":"Retail",
+"budget":700000,
+"expected_timeline_months":8,
+"team_size":10,
+"tech_stack":["Angular","Spring Boot","MySQL"],
+"cloud_provider":"Azure",
+"project_manager":"Priya Patel",
+"start_date":"2026-05-10"
+}
+]
