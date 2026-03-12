@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RiskOptima AI</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="main-container">
+
+<!-- HEADER -->
+<header class="header">
+<div class="logo">
+🧠 <span>RiskOptima AI</span>
+</div>
+<button class="exit">Exit</button>
+</header>
+
+
+<!-- STEP NAVIGATION -->
+
+<div class="steps">
+<div class="step active">1 Project Details</div>
+<div class="step">2 Cloud Infrastructure</div>
+<div class="step">3 Analysis</div>
+</div>
+
+
+<!-- PAGE 1 -->
+
+<section id="page1" class="page active">
+
+<h2>Project Information</h2>
+<p class="subtitle">Provide details about your IT project for comprehensive risk analysis.</p>
+
+<div class="card form-container">
+
+<label>Project Name *</label>
+<input type="text" placeholder="e.g., ERP System Migration">
+
+<label>Project Type *</label>
+<select>
+<option>Select project type</option>
+<option>Web Application</option>
+<option>Mobile App</option>
+<option>Cloud Migration</option>
+<option>Data Platform</option>
+</select>
+
+<label>Total Budget (USD) *</label>
+<input type="number" placeholder="e.g., 2500000">
+
+<label>Duration (Months) *</label>
+<input type="number" placeholder="e.g., 12">
+
+<label>Team Size *</label>
+<input type="number" placeholder="e.g., 15">
+
+<label>Complexity Level *</label>
+<select>
+<option>Select complexity</option>
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+
+<label>Number of Stakeholders</label>
+<input type="number" placeholder="e.g., 8">
+
+<label>Project Description</label>
+<textarea placeholder="Describe the project objectives, scope, and key deliverables..."></textarea>
+
+</div>
+
+<div class="buttons">
+<button class="back">Back to Home</button>
+<button class="next" onclick="nextPage()">Continue to Cloud Setup</button>
+</div>
+
+</section>
+
+
+<!-- PAGE 2 -->
+
+<section id="page2" class="page">
+
+<h2>AWS Cloud Infrastructure</h2>
+<p class="subtitle">Provide your AWS environment details for cost optimization analysis.</p>
+
+<div class="card form-container">
+
+<h3>AWS Account Information</h3>
+
+<label>AWS Account ID *</label>
+<input type="text" placeholder="e.g., 123456789012">
+
+<label>Monthly AWS Spend (USD) *</label>
+<input type="number" placeholder="e.g., 45000">
+
+<label>Total EC2 Instances *</label>
+<input type="number" placeholder="e.g., 25">
+
+<label>S3 Storage (GB) *</label>
+<input type="number" placeholder="e.g., 5000">
+
+<label>RDS Instances</label>
+<input type="number" placeholder="e.g., 5">
+
+<label>Monthly Lambda Invocations</label>
+<input type="number" placeholder="e.g., 1000000">
+
+</div>
+
+
+<div class="card form-container">
+
+<h3>EC2 Instance Details (Optional)</h3>
+
+<label>Instance Type</label>
+<select>
+<option>Select type</option>
+<option>t2.micro</option>
+<option>t3.medium</option>
+<option>m5.large</option>
+</select>
+
+<label>Region</label>
+<select>
+<option>Select region</option>
+<option>us-east-1</option>
+<option>us-west-2</option>
+<option>ap-south-1</option>
+</select>
+
+<label>Running Hours/Day</label>
+<input type="number" value="24">
+
+<label>Avg CPU Utilization %</label>
+<input type="number" value="15">
+
+</div>
+
+<div class="buttons">
+<button class="back" onclick="prevPage()">Back to Project Details</button>
+<button class="next" onclick="runAnalysis()">Run AI Analysis</button>
+</div>
+
+</section>
+
+<!-- PAGE 3 : ANALYSIS -->
+
+<section id="page3" class="page">
+
+<h2>Analysis Complete</h2>
+
+<div class="results-grid">
+
+<div class="result-card">
+<h4>Risk Score</h4>
+<p id="riskValue">--</p>
+</div>
+
+<div class="result-card">
+<h4>Cost Efficiency</h4>
+<p id="efficiencyValue">--</p>
+</div>
+
+<div class="result-card">
+<h4>Optimization Potential</h4>
+<p id="optimizationValue">--</p>
+</div>
+
+<div class="result-card">
+<h4>Estimated Savings</h4>
+<p id="savingsValue">--</p>
+</div>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="card risk-card">
+<h3 class="card-title">Overall Risk</h3>
+
+<div class="chart-container">
+<canvas id="riskChart"></canvas>
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Cost Efficiency</h3>
+
+<div class="efficiency-container">
+<div id="efficiencyBar" class="efficiency-bar"></div>
+</div>
+
+<p id="costEfficiency">Calculating...</p>
+
+</div>
+
+<div class="card">
+<h3>Profitability Forecast</h3>
+<div class="chart-container">
+<canvas id="profitChart"></canvas>
+</div>
+</div>
+
+<div class="card">
+<h3>Scenario Simulation</h3>
+<div class="chart-container">
+<canvas id="scenarioChart"></canvas>
+</div>
+</div>
+
+</div>
+
+
+<div class="card dark">
+<h3>AI Executive Insights</h3>
+<div id="insightsContainer" class="insights-grid"></div>
+</div>
+
+
+<div class="buttons">
+<button class="back" onclick="prevToCloud()">Back</button>
+</div>
+
+</section>
+
+
+<script src="script.js"></script>
+</div>
+</body>
+</html>
