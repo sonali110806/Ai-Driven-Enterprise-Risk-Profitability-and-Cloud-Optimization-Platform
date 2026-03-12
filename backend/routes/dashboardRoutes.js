@@ -1,4 +1,4 @@
-const express = require("express")
+import express from "express";
 const router = express.Router()
 
 router.get("/dashboard", (req, res) => {
@@ -14,4 +14,4 @@ router.get("/dashboard", (req, res) => {
 
 })
 
-module.exports = router
+export default router;

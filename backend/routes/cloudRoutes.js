@@ -1,4 +1,4 @@
-const express = require("express")
+import express from "express";
 const router = express.Router()
 
 router.post("/cloud-analysis", (req, res) => {
@@ -21,6 +21,6 @@ router.post("/cloud-analysis", (req, res) => {
     predictedMonthlyCost: 1200
   })
 
-})
+});
 
-module.exports = router
+export default router;
