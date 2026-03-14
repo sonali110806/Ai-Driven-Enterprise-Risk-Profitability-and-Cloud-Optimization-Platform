@@ -1,0 +1,16 @@
+app.get("/verifyPortalResults", async (req, res) => {
+  try {
+    const results = await PortalResult.find();
+
+    res.json({
+      message: "Portal results verified successfully",
+      count: results.length,
+      data: results
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error verifying portal results"
+    });
+  }
+});
