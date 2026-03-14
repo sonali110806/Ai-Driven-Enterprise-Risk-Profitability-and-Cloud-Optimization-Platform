@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Company Projects</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:#eef1f6;
+    }
+
+    .navbar{
+      background:#1f3c88;
+      color:white;
+      padding:15px 40px;
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    .container{
+      padding:40px;
+    }
+
+    .title{
+      font-size:28px;
+      margin-bottom:25px;
+      color:#1f3c88;
+      font-weight:bold;
+    }
+
+    .project-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .project-card{
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .project-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .project-title{
+      font-size:20px;
+      font-weight:bold;
+      color:#1f3c88;
+      margin-bottom:10px;
+    }
+
+    .project-desc{
+      font-size:14px;
+      color:#555;
+      margin-bottom:15px;
+    }
+
+    .status{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:bold;
+      color:white;
+    }
+
+    .completed{
+      background:#28a745;
+    }
+
+    .ongoing{
+      background:#ff9800;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="navbar">
+   Company Dashboard
+</div>
+
+<div class="container">
+
+   <div class="title">Previous Projects</div>
+
+   <div class="project-grid">
+
+      <div class="project-card">
+         <div class="project-title">AI Cloud Monitoring System</div>
+         <div class="project-desc">
+            System developed to monitor cloud usage and generate AI insights.
+         </div>
+         <span class="status completed">Completed</span>
+      </div>
+
+      <div class="project-card">
+         <div class="project-title">College Admission Portal</div>
+         <div class="project-desc">
+            Web platform for filtering engineering colleges based on cutoff.
+         </div>
+         <span class="status ongoing">Ongoing</span>
+      </div>
+
+      <div class="project-card">
+         <div class="project-title">IoT Smart Energy Meter</div>
+         <div class="project-desc">
+            IoT device for tracking household electricity consumption.
+         </div>
+         <span class="status completed">Completed</span>
+      </div>
+
+   </div>
+
+</div>
+
+</body>
+</html>
