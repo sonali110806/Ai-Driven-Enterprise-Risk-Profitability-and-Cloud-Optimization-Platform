@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RiskOptima AI - Customer Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="final.css">
+</head>
+
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="nav-left">
+      <div class="logo">
+        <i class="fas fa-shield-alt"></i>
+        <div class="logo-text">
+          <h2>RiskOptima AI</h2>
+          <p>Cloud Cost Analytics</p>
+        </div>
+      </div>
+    </div>
+    <div class="nav-center">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search AWS resources, instances...">
+      </div>
+    </div>
+    <div class="nav-right">
+      <button class="nav-btn" id="refreshBtn"><i class="fas fa-sync"></i> Refresh</button>
+      <button class="nav-btn primary" id="exportBtn"><i class="fas fa-download"></i> Export Report</button>
+      <div class="user-menu">
+        <div class="user-profile">
+          <i class="fas fa-user-circle"></i>
+          <span id="userName">Customer Name</span>
+        </div>
+        <button class="nav-btn logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="dashboard-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="nav-sections">
+        <a href="#" class="nav-link active" data-section="overview">
+          <i class="fas fa-chart-pie"></i>
+          <span>Cost Overview</span>
+        </a>
+        <a href="#" class="nav-link" data-section="ec2">
+          <i class="fas fa-server"></i>
+          <span>EC2 Analysis</span>
+        </a>
+        <a href="#" class="nav-link" data-section="optimization">
+          <i class="fas fa-wrench"></i>
+          <span>Optimization</span>
+        </a>
+        <a href="#" class="nav-link" data-section="recommendations">
+          <i class="fas fa-lightbulb"></i>
+          <span>Recommendations</span>
+        </a>
+        <a href="#" class="nav-link" data-section="executive-summary">
+          <i class="fas fa-briefcase"></i>
+          <span>Executive Summary</span>
+        </a>
+        <a href="#" class="nav-link" data-section="reports">
+          <i class="fas fa-file-pdf"></i>
+          <span>Reports</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- ============ COST OVERVIEW SECTION ============ -->
+      <section id="overview" class="content-section active">
+        <!-- Success Alert -->
+        <div class="success-alert">
+          <div class="alert-left">
+            <i class="fas fa-check-circle"></i>
+            <div class="alert-content">
+              <h3>AWS Analysis Complete</h3>
+              <p>Latest cloud cost analysis and optimization opportunities identified.</p>
+            </div>
+          </div>
+          <div class="alert-right">
+            <span class="confidence-badge">Last Updated: Today</span>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <h2><i class="fas fa-chart-pie"></i> AWS Cloud Cost Overview</h2>
+        </div>
+
+        <!-- Cost Summary Cards -->
+        <div class="cost-summary-grid">
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Current Monthly Spend</h4>
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value">$45,200</span>
+              <p class="cost-detail">Average per month</p>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Optimization Potential</h4>
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value saving">$1,450</span>
+              <p class="cost-detail">Monthly savings available</p>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Annual Savings</h4>
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value saving">$17,400</span>
+              <p class="cost-detail">If all recommendations applied</p>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Optimization Score</h4>
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value">68%</span>
+              <p class="cost-detail">Current efficiency level</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost Trend Chart -->
+        <div class="chart-full-width">
+          <div class="chart-header">
+            <h3>Monthly Cost Trend</h3>
+            <div class="chart-controls">
+              <button class="btn-sm"><i class="fas fa-redo"></i></button>
+              <button class="btn-sm"><i class="fas fa-download"></i></button>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="costTrendChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Cost Distribution Charts -->
+        <div class="charts-row">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Cost by Service</h3>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="costByServiceChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Cost by Region</h3>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="costByRegionChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost Metrics Table -->
+        <div class="metrics-table-container">
+          <h3>Monthly Cost Breakdown</h3>
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Current Cost</th>
+                <th>Previous Month</th>
+                <th>Change</th>
+                <th>Trend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>EC2 Instances</strong></td>
+                <td>$18,500</td>
+                <td>$17,800</td>
+                <td>+$700</td>
+                <td><span class="trend-up">↑ Up 3.9%</span></td>
+              </tr>
+              <tr>
+                <td><strong>RDS Database</strong></td>
+                <td>$8,200</td>
+                <td>$8,100</td>
+                <td>+$100</td>
+                <td><span class="trend-up">↑ Up 1.2%</span></td>
+              </tr>
+              <tr>
+                <td><strong>S3 Storage</strong></td>
+                <td>$6,500</td>
+                <td>$6,800</td>
+                <td>-$300</td>
+                <td><span class="trend-down">↓ Down 4.4%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lambda Functions</strong></td>
+                <td>$5,200</td>
+                <td>$5,000</td>
+                <td>+$200</td>
+                <td><span class="trend-up">↑ Up 4.0%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Data Transfer</strong></td>
+                <td>$4,300</td>
+                <td>$4,100</td>
+                <td>+$200</td>
+                <td><span class="trend-up">↑ Up 4.9%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Other Services</strong></td>
+                <td>$2,500</td>
+                <td>$2,300</td>
+                <td>+$200</td>
+                <td><span class="trend-up">↑ Up 8.7%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ EC2 ANALYSIS SECTION ============ -->
+      <section id="ec2" class="content-section">
+        <div class="section-header">
+          <h2><i class="fas fa-server"></i> EC2 Instance Analysis</h2>
+        </div>
+
+        <!-- EC2 Summary -->
+        <div class="cost-summary-grid">
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Total Instances</h4>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value">156</span>
+              <p class="cost-detail">Running & stopped</p>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Running Instances</h4>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value">89</span>
+              <p class="cost-detail">Active instances</p>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Underutilized</h4>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value warning">4</span>
+              <p class="cost-detail">Low CPU usage</p>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="card-header">
+              <h4>Monthly EC2 Cost</h4>
+            </div>
+            <div class="cost-display">
+              <span class="cost-value">$18,500</span>
+              <p class="cost-detail">40.9% of total</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EC2 Chart -->
+        <div class="chart-full-width">
+          <div class="chart-header">
+            <h3>EC2 CPU Utilization Analysis</h3>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="ec2UtilizationChart"></canvas>
+          </div>
+        </div>
+
+        <!-- EC2 Table -->
+        <div class="metrics-table-container">
+          <h3>Underutilized EC2 Instances</h3>
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th>Instance ID</th>
+                <th>Type</th>
+                <th>Region</th>
+                <th>Avg CPU</th>
+                <th>Uptime</th>
+                <th>Monthly Cost</th>
+                <th>Potential Savings</th>
+                <th>Recommendation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>i-0a1b2c3d4e5f6</code></td>
+                <td>m5.large</td>
+                <td>us-east-1</td>
+                <td><span class="cpu-low">12%</span></td>
+                <td>24h</td>
+                <td>$152</td>
+                <td><span class="savings-green">$120</span></td>
+                <td>Downsize or schedule shutdown</td>
+              </tr>
+              <tr>
+                <td><code>i-9z8y7x6w5v4u3</code></td>
+                <td>c5.2xlarge</td>
+                <td>us-west-2</td>
+                <td><span class="cpu-low">8%</span></td>
+                <td>24h</td>
+                <td>$245</td>
+                <td><span class="savings-green">$210</span></td>
+                <td>Switch to t3.large</td>
+              </tr>
+              <tr>
+                <td><code>i-1q2w3e4r5t6y7</code></td>
+                <td>r5.large</td>
+                <td>eu-west-1</td>
+                <td><span class="cpu-medium">18%</span></td>
+                <td>24h</td>
+                <td>$126</td>
+                <td><span class="savings-green">$85</span></td>
+                <td>Migrate to t3.medium</td>
+              </tr>
+              <tr>
+                <td><code>i-7u8i9o0p1a2s3</code></td>
+                <td>t3.large</td>
+                <td>ap-southeast-1</td>
+                <td><span class="cpu-low">5%</span></td>
+                <td>16h</td>
+                <td>$76</td>
+                <td><span class="savings-green">$65</span></td>
+                <td>Stop non-business hours</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ OPTIMIZATION SECTION ============ -->
+      <section id="optimization" class="content-section">
+        <div class="section-header">
+          <h2><i class="fas fa-wrench"></i> Optimization Opportunities</h2>
+        </div>
+
+        <!-- Issues Chart -->
+        <div class="chart-full-width">
+          <div class="chart-header">
+            <h3>Issues by Severity</h3>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="issuesSeverityChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Issues List -->
+        <div class="issues-section">
+          <h3>Identified Issues & Recommendations</h3>
+
+          <div class="issues-list">
+            <div class="issue-item severity-high">
+              <span class="severity-indicator"></span>
+              <div class="issue-details">
+                <h4>Unused Elastic IPs</h4>
+                <p>3 Elastic IP addresses allocated but not associated with any instance</p>
+                <span class="savings">$36/month savings potential</span>
+                <button class="btn-fix"><i class="fas fa-check"></i> Fix Now</button>
+              </div>
+            </div>
+
+            <div class="issue-item severity-medium">
+              <span class="severity-indicator"></span>
+              <div class="issue-details">
+                <h4>Unattached EBS Volumes</h4>
+                <p>5 EBS volumes not attached to any instance but still incurring charges</p>
+                <span class="savings">$65/month savings potential</span>
+                <button class="btn-fix"><i class="fas fa-check"></i> Fix Now</button>
+              </div>
+            </div>
+
+            <div class="issue-item severity-medium">
+              <span class="severity-indicator"></span>
+              <div class="issue-details">
+                <h4>Non-optimized Storage Classes</h4>
+                <p>2TB of S3 data in expensive storage classes that could be transitioned</p>
+                <span class="savings">$180/month savings potential</span>
+                <button class="btn-fix"><i class="fas fa-check"></i> Fix Now</button>
+              </div>
+            </div>
+
+            <div class="issue-item severity-low">
+              <span class="severity-indicator"></span>
+              <div class="issue-details">
+                <h4>Reserved Instances Underutilization</h4>
+                <p>4 Reserved Instances with utilization below 40% - consider on-demand alternatives</p>
+                <span class="savings">$240/month savings potential</span>
+                <button class="btn-fix"><i class="fas fa-check"></i> Fix Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RECOMMENDATIONS SECTION ============ -->
+      <section id="recommendations" class="content-section">
+        <div class="section-header">
+          <h2><i class="fas fa-lightbulb"></i> Optimization Roadmap</h2>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="roadmap">
+          <div class="roadmap-item completed">
+            <span class="timeline-marker">Phase 1</span>
+            <div class="roadmap-content">
+              <h4>Immediate Actions (Next 30 Days)</h4>
+              <p>Quick wins that can be implemented immediately with minimal effort</p>
+              <ul class="action-list">
+                <li><i class="fas fa-check"></i> Remove unused Elastic IPs (3 instances) - Save $36/month</li>
+                <li><i class="fas fa-check"></i> Delete unattached EBS volumes (5 volumes) - Save $65/month</li>
+                <li><i class="fas fa-check"></i> Implement automatic shutdown policies - Save $45/month</li>
+              </ul>
+              <span class="savings-amount">$146/month saved</span>
+            </div>
+          </div>
+
+          <div class="roadmap-item">
+            <span class="timeline-marker">Phase 2</span>
+            <div class="roadmap-content">
+              <h4>Short-term Optimization (30-90 Days)</h4>
+              <p>Strategic optimizations requiring some planning and testing</p>
+              <ul class="action-list">
+                <li><i class="fas fa-cog"></i> Transition S3 data to cheaper storage classes - Save $180/month</li>
+                <li><i class="fas fa-cog"></i> Implement auto-scaling policies - Save $240/month</li>
+                <li><i class="fas fa-cog"></i> Right-size EC2 instances - Save $300/month</li>
+              </ul>
+              <span class="savings-amount">$720/month saved</span>
+            </div>
+          </div>
+
+          <div class="roadmap-item">
+            <span class="timeline-marker">Phase 3</span>
+            <div class="roadmap-content">
+              <h4>Long-term Strategy (90+ Days)</h4>
+              <p>Comprehensive optimization for maximum savings</p>
+              <ul class="action-list">
+                <li><i class="fas fa-chart-line"></i> Purchase Reserved Instances - Save $400/month</li>
+                <li><i class="fas fa-chart-line"></i> Implement Spot Instances for non-critical workloads - Save
+                  $350/month</li>
+                <li><i class="fas fa-chart-line"></i> Archive unused data and databases - Save $240/month</li>
+              </ul>
+              <span class="savings-amount">$990/month saved</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-savings-box">
+          <h3>Total Annual Savings Potential: <span>$17,400</span></h3>
+          <p>Cumulative savings from all recommendations across 12 months</p>
+        </div>
+      </section>
+
+      <!-- ============ EXECUTIVE SUMMARY SECTION ============ -->
+      <section id="executive-summary" class="content-section">
+        <div class="section-header">
+          <h2><i class="fas fa-briefcase"></i> Executive Decision Summary</h2>
+        </div>
+
+        <!-- Main Executive Summary Card -->
+        <div class="executive-summary-card">
+          <div class="card-top-section">
+            <div class="card-title-section">
+              <i class="fas fa-brain"></i>
+              <h3>AI-Generated Insights</h3>
+            </div>
+            <div class="confidence-badge">
+              <span>Confidence Score: 87%</span>
+            </div>
+          </div>
+
+          <!-- Main Insights Content -->
+          <div class="insights-main-content">
+            <p>
+              Based on comprehensive analysis of your <strong>AWS infrastructure and cloud deployment</strong>,
+              we recommend implementing a <strong>phased optimization approach</strong>. Our AI analysis identifies
+              <strong>$1,450/month in optimization opportunities</strong>, primarily from:
+            </p>
+
+            <ul class="insights-bullet-list">
+              <li>
+                <strong>Underutilized EC2 Instances:</strong> 4 instances with CPU usage below 20% - Save $480/month
+              </li>
+              <li>
+                <strong>Storage Optimization:</strong> Non-optimized S3 storage classes and unattached volumes - Save
+                $245/month
+              </li>
+              <li>
+                <strong>Reserved Instance Optimization:</strong> Underutilized reserved instances - Save $240/month
+              </li>
+              <li>
+                <strong>Network Optimization:</strong> Unused Elastic IPs and data transfer costs - Save $445/month
+              </li>
+            </ul>
+
+            <p>
+              Immediate action on high-priority optimizations could yield <strong>annual savings of $17,400</strong>
+              while maintaining or improving application performance. The phased approach ensures minimal disruption
+              to your operations.
+            </p>
+          </div>
+
+          <!-- Action Items Grid -->
+          <div class="action-items-grid">
+            <div class="action-card key-recommendation">
+              <div class="action-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h4>Key Recommendation</h4>
+              <p>Right-size EC2 instances and implement auto-scaling policies</p>
+            </div>
+
+            <div class="action-card risk-mitigation">
+              <div class="action-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4>Risk Assessment</h4>
+              <p>Low risk | Minimal disruption | Reverse-compatible changes</p>
+            </div>
+
+            <div class="action-card immediate-action">
+              <div class="action-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h4>Immediate Action</h4>
+              <p>Address high-priority optimizations within 30 days</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive Action Buttons -->
+        <div class="executive-action-buttons">
+          <button class="exec-btn modify-btn" id="modifyInputsBtn">
+            <i class="fas fa-edit"></i>
+            <span>Modify Inputs</span>
+          </button>
+          <button class="exec-btn export-btn primary" id="exportFullReportBtn">
+            <i class="fas fa-file-pdf"></i>
+            <span>Export Full Report (PDF)</span>
+          </button>
+          <button class="exec-btn refresh-btn" id="startNewAnalysisBtn">
+            <i class="fas fa-sync-alt"></i>
+            <span>Start New Analysis</span>
+          </button>
+        </div>
+
+        <!-- Executive KPIs Section -->
+        <div class="executive-kpis-section">
+          <h3>Key Performance Indicators</h3>
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span class="kpi-label">Current Monthly Spend</span>
+              <span class="kpi-value">$45,200</span>
+              <span class="kpi-change">+3.2% from last month</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Optimization Potential</span>
+              <span class="kpi-value">$1,450</span>
+              <span class="kpi-change">Monthly savings available</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Annual Savings</span>
+              <span class="kpi-value">$17,400</span>
+              <span class="kpi-change">If all recommendations applied</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">ROI on Optimization</span>
+              <span class="kpi-value">320%</span>
+              <span class="kpi-change">Return on investment ratio</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Instances Analyzed</span>
+              <span class="kpi-value">156</span>
+              <span class="kpi-change">Total EC2 instances reviewed</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Issues Detected</span>
+              <span class="kpi-value">12</span>
+              <span class="kpi-change">Optimization opportunities found</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ REPORTS SECTION ============ -->
+      <section id="reports" class="content-section">
+        <div class="section-header">
+          <h2><i class="fas fa-file-pdf"></i> Reports & Analytics</h2>
+        </div>
+
+        <!-- Report Cards -->
+        <div class="reports-grid">
+          <div class="report-card">
+            <div class="report-icon"><i class="fas fa-chart-bar"></i></div>
+            <h3>Cost Analysis Report</h3>
+            <p>Detailed breakdown of AWS costs by service and region</p>
+            <button class="btn-secondary" onclick="generateReport('cost')">
+              <i class="fas fa-download"></i> Generate Report
+            </button>
+          </div>
+
+          <div class="report-card">
+            <div class="report-icon"><i class="fas fa-server"></i></div>
+            <h3>EC2 Optimization Report</h3>
+            <p>Analysis of EC2 instances and rightsizing recommendations</p>
+            <button class="btn-secondary" onclick="generateReport('ec2')">
+              <i class="fas fa-download"></i> Generate Report
+            </button>
+          </div>
+
+          <div class="report-card">
+            <div class="report-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>Savings Action Plan</h3>
+            <p>Prioritized list of actions to reduce AWS spending</p>
+            <button class="btn-secondary" onclick="generateReport('savings')">
+              <i class="fas fa-download"></i> Generate Report
+            </button>
+          </div>
+
+          <div class="report-card">
+            <div class="report-icon"><i class="fas fa-file-csv"></i></div>
+            <h3>Data Export (CSV)</h3>
+            <p>Export all AWS metrics and cost data for further analysis</p>
+            <button class="btn-secondary" onclick="generateReport('csv')">
+              <i class="fas fa-download"></i> Export CSV
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Add this after the reports section in customer-dashboard.html -->
+
+        <!-- ============ AWS CLOUD OPTIMIZATION SECTION ============ -->
+        <section id="aws-optimization" class="content-section">
+          <div class="section-header">
+            <h2><i class="fab fa-aws"></i> AWS Cloud Optimization</h2>
+          </div>
+
+          <!-- AWS Toggle Buttons -->
+          <div class="aws-toggle-tabs">
+            <button class="toggle-btn active" data-toggle="ec2-toggle">
+              <i class="fas fa-server"></i> EC2 Instances
+            </button>
+            <button class="toggle-btn" data-toggle="optimization-toggle">
+              <i class="fas fa-wrench"></i> Optimization Issues
+            </button>
+            <button class="toggle-btn" data-toggle="savings-toggle">
+              <i class="fas fa-dollar-sign"></i> Cost Savings
+            </button>
+          </div>
+
+          <!-- EC2 TOGGLE CONTENT -->
+          <div id="ec2-toggle" class="toggle-content active">
+            <div class="optimization-header">
+              <h3>Underutilized EC2 Instances</h3>
+              <span class="found-badge">4 Found</span>
+            </div>
+            <p class="optimization-subtitle">Instances with low CPU utilization requiring attention</p>
+
+            <table class="metrics-table">
+              <thead>
+                <tr>
+                  <th>Instance ID</th>
+                  <th>Type</th>
+                  <th>Region</th>
+                  <th>Avg CPU</th>
+                  <th>Uptime</th>
+                  <th>Monthly Cost</th>
+                  <th>Savings</th>
+                  <th>Recommendation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>i-0a1b2c3d4e5f6</code></td>
+                  <td>m5.large</td>
+                  <td>us-east-1</td>
+                  <td><span class="cpu-low">12%</span></td>
+                  <td>24h</td>
+                  <td>$152</td>
+                  <td><span class="savings-green">$120</span></td>
+                  <td>Downsize to m5.large or schedule shutdown</td>
+                </tr>
+                <tr>
+                  <td><code>i-9z8y7x6w5v4u3</code></td>
+                  <td>c5.2xlarge</td>
+                  <td>us-west-2</td>
+                  <td><span class="cpu-low">8%</span></td>
+                  <td>24h</td>
+                  <td>$245</td>
+                  <td><span class="savings-green">$210</span></td>
+                  <td>Switch to t3.large or implement auto-scaling</td>
+                </tr>
+                <tr>
+                  <td><code>i-1q2w3e4r5t6y7</code></td>
+                  <td>r5.large</td>
+                  <td>eu-west-1</td>
+                  <td><span class="cpu-medium">18%</span></td>
+                  <td>24h</td>
+                  <td>$126</td>
+                  <td><span class="savings-green">$85</span></td>
+                  <td>Migrate to t3.medium with reserved instance</td>
+                </tr>
+                <tr>
+                  <td><code>i-7u8i9o0p1a2s3</code></td>
+                  <td>t3.large</td>
+                  <td>ap-southeast-1</td>
+                  <td><span class="cpu-low">5%</span></td>
+                  <td>16h</td>
+                  <td>$76</td>
+                  <td><span class="savings-green">$65</span></td>
+                  <td>Stop during non-business hours</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="aws-summary">
+              <strong>Total Monthly Savings Opportunity: $480</strong> | <strong>Annual Savings: $5,760</strong>
+            </div>
+          </div>
+
+          <!-- OPTIMIZATION ISSUES TOGGLE CONTENT -->
+          <div id="optimization-toggle" class="toggle-content">
+            <div class="optimization-header">
+              <h3>Identified Optimization Issues</h3>
+              <span class="issues-badge">12 Issues</span>
+            </div>
+
+            <div class="chart-full-width">
+              <div class="chart-header">
+                <h3>Issues by Severity Level</h3>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="optimizationIssuesChart"></canvas>
+              </div>
+            </div>
+
+            <div class="issues-list-container">
+              <div class="issue-item severity-high">
+                <span class="severity-indicator"></span>
+                <div class="issue-details">
+                  <h4>Unused Elastic IPs</h4>
+                  <p>3 Elastic IP addresses allocated but not associated with instances</p>
+                  <span class="savings">$36/month savings</span>
+                </div>
+              </div>
+
+              <div class="issue-item severity-medium">
+                <span class="severity-indicator"></span>
+                <div class="issue-details">
+                  <h4>Unattached EBS Volumes</h4>
+                  <p>5 EBS volumes not attached to any instance</p>
+                  <span class="savings">$65/month savings</span>
+                </div>
+              </div>
+
+              <div class="issue-item severity-medium">
+                <span class="severity-indicator"></span>
+                <div class="issue-details">
+                  <h4>Non-optimized Storage Classes</h4>
+                  <p>2TB of S3 data in expensive storage classes</p>
+                  <span class="savings">$180/month savings</span>
+                </div>
+              </div>
+
+              <div class="issue-item severity-low">
+                <span class="severity-indicator"></span>
+                <div class="issue-details">
+                  <h4>Reserved Instances Underutilization</h4>
+                  <p>4 Reserved Instances with utilization below 40%</p>
+                  <span class="savings">$240/month savings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COST SAVINGS TOGGLE CONTENT -->
+          <div id="savings-toggle" class="toggle-content">
+            <div class="optimization-header">
+              <h3>Cost Optimization Roadmap</h3>
+            </div>
+
+            <div class="chart-full-width">
+              <div class="chart-header">
+                <h3>Projected Savings Over Time</h3>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="savingsProjectionChart"></canvas>
+              </div>
+            </div>
+
+            <div class="savings-roadmap">
+              <div class="roadmap-item completed">
+                <span class="timeline-marker">Q1</span>
+                <div class="roadmap-content">
+                  <h4>Immediate Actions (30 days)</h4>
+                  <p>Quick wins that can be implemented immediately with minimal effort</p>
+                  <span class="savings-amount">$96/month</span>
+                </div>
+              </div>
+
+              <div class="roadmap-item">
+                <span class="timeline-marker">Q2</span>
+                <div class="roadmap-content">
+                  <h4>Short-term Optimization (60-90 days)</h4>
+                  <p>Strategic optimizations requiring some planning and testing</p>
+                  <span class="savings-amount">$420/month</span>
+                </div>
+              </div>
+
+              <div class="roadmap-item">
+                <span class="timeline-marker">Q3-Q4</span>
+                <div class="roadmap-content">
+                  <h4>Long-term Strategy (90+ days)</h4>
+                  <p>Comprehensive optimization for maximum savings</p>
+                  <span class="savings-amount">$890/month</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-savings-box">
+              <h3>Annual Savings Potential: <span>$17,400</span></h3>
+              <p>Cumulative savings from all recommendations across 12 months</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- AI Generated Insights Box -->
+        <div class="ai-insights-box">
+          <div class="insights-header">
+            <div class="insights-left">
+              <i class="fas fa-brain"></i>
+              <h3>AI-Generated Insights</h3>
+            </div>
+            <span class="confidence-badge-large">Confidence Score: 87%</span>
+          </div>
+
+          <div class="insights-content">
+            <p>Based on comprehensive analysis of your <strong>AWS infrastructure and cloud deployment</strong>, we
+              recommend implementing a phased optimization approach. Our AI analysis identifies <strong>$1,450/month
+                in optimization opportunities</strong>, primarily from:</p>
+
+            <ul class="insights-list">
+              <li><strong>Underutilized EC2 Instances:</strong> 4 instances with CPU usage below 20% - Save $480/month
+              </li>
+              <li><strong>Storage Optimization:</strong> Non-optimized S3 storage classes and unattached volumes -
+                Save $245/month</li>
+              <li><strong>Reserved Instance Optimization:</strong> Underutilized reserved instances - Save $240/month
+              </li>
+              <li><strong>Network Optimization:</strong> Unused Elastic IPs and data transfer costs - Save $445/month
+              </li>
+            </ul>
+
+            <p>Immediate action on high-priority optimizations could yield <strong>annual savings of $17,400</strong>
+              while maintaining or improving application performance. The phased approach ensures minimal disruption
+              to your operations.</p>
+          </div>
+
+          <!-- Action Items -->
+          <div class="action-items">
+            <div class="action-item">
+              <span class="action-icon success">●</span>
+              <h4>Key Recommendation</h4>
+              <p>Right-size EC2 instances and implement auto-scaling policies</p>
+            </div>
+            <div class="action-item">
+              <span class="action-icon warning">●</span>
+              <h4>Risk Assessment</h4>
+              <p>Low risk | Minimal disruption | Reverse-compatible changes</p>
+            </div>
+            <div class="action-item">
+              <span class="action-icon info">●</span>
+              <h4>Immediate Action</h4>
+              <p>Address high-priority optimizations within 30 days</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Executive Actions -->
+        <div class="executive-actions">
+          <button class="btn-action" id="modifyInputsBtn">
+            <i class="fas fa-edit"></i> Modify Inputs
+          </button>
+          <button class="btn-action primary" id="exportFullReportBtn">
+            <i class="fas fa-download"></i> Export Full Report (PDF)
+          </button>
+          <button class="btn-action" id="startNewAnalysisBtn">
+            <i class="fas fa-sync"></i> Start New Analysis
+          </button>
+        </div>
+
+        <!-- Executive KPIs -->
+        <div class="executive-kpis">
+          <div class="kpi-box">
+            <span class="kpi-label">Current Monthly Spend</span>
+            <span class="kpi-value">$45,200</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-label">Optimization Potential</span>
+            <span class="kpi-value">$1,450</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-label">Annual Savings</span>
+            <span class="kpi-value">$17,400</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-label">ROI on Optimization</span>
+            <span class="kpi-value">320%</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-label">Instances Analyzed</span>
+            <span class="kpi-value">156</span>
+          </div>
+          <div class="kpi-box">
+            <span class="kpi-label">Issues Detected</span>
+            <span class="kpi-value">12</span>
+          </div>
+        </div>
+
+        <!-- Risk Mitigation Strategies -->
+        <div class="mitigation-section">
+          <h3><i class="fas fa-shield-alt"></i> Implementation Recommendations</h3>
+          <div class="mitigation-grid">
+            <div class="mitigation-card">
+              <div class="mitigation-icon">📊</div>
+              <h4>Phase 1: Assessment (Week 1)</h4>
+              <p>Review all recommendations and create implementation plan with your infrastructure team.</p>
+              <span class="mitigation-priority high">High Priority</span>
+            </div>
+            <div class="mitigation-card">
+              <div class="mitigation-icon">⚙️</div>
+              <h4>Phase 2: Implementation (Week 2-4)</h4>
+              <p>Execute optimizations starting with lowest-risk changes and most impactful savings.</p>
+              <span class="mitigation-priority high">High Priority</span>
+            </div>
+            <div class="mitigation-card">
+              <div class="mitigation-icon">📈</div>
+              <h4>Phase 3: Monitoring (Ongoing)</h4>
+              <p>Monitor performance metrics and adjust configurations based on application needs.</p>
+              <span class="mitigation-priority medium">Medium Priority</span>
+            </div>
+            <div class="mitigation-card">
+              <div class="mitigation-icon">🔄</div>
+              <h4>Phase 4: Continuous Optimization</h4>
+              <p>Review quarterly and identify new optimization opportunities as workloads evolve.</p>
+              <span class="mitigation-priority medium">Medium Priority</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Impact -->
+        <div class="financial-impact">
+          <h3><i class="fas fa-chart-line"></i> Financial Impact Analysis</h3>
+          <div class="impact-grid">
+            <div class="impact-box positive">
+              <span class="impact-label">Monthly Savings</span>
+              <span class="impact-value">$1,450</span>
+              <span class="impact-detail">From optimization</span>
+            </div>
+            <div class="impact-box positive">
+              <span class="impact-label">Annual Savings</span>
+              <span class="impact-value">$17,400</span>
+              <span class="impact-detail">Full year projection</span>
+            </div>
+            <div class="impact-box success">
+              <span class="impact-label">Implementation Cost</span>
+              <span class="impact-value">$0</span>
+              <span class="impact-detail">No additional cost</span>
+            </div>
+            <div class="impact-box positive">
+              <span class="impact-label">Payback Period</span>
+              <span class="impact-value">Immediate</span>
+              <span class="impact-detail">Savings from month 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="metrics-table-container">
+          <h3>Current vs Optimized Spend</h3>
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Current Cost</th>
+                <th>Optimized Cost</th>
+                <th>Monthly Savings</th>
+                <th>Annual Savings</th>
+                <th>Savings %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>EC2 Instances</strong></td>
+                <td>$18,500</td>
+                <td>$16,800</td>
+                <td><span class="savings-green">$1,700</span></td>
+                <td><span class="savings-green">$20,400</span></td>
+                <td><span class="savings-green">9.2%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Storage Services</strong></td>
+                <td>$6,500</td>
+                <td>$6,100</td>
+                <td><span class="savings-green">$400</span></td>
+                <td><span class="savings-green">$4,800</span></td>
+                <td><span class="savings-green">6.2%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Network & Data</strong></td>
+                <td>$9,600</td>
+                <td>$8,900</td>
+                <td><span class="savings-green">$700</span></td>
+                <td><span class="savings-green">$8,400</span></td>
+                <td><span class="savings-green">7.3%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Databases</strong></td>
+                <td>$8,200</td>
+                <td>$7,950</td>
+                <td><span class="savings-green">$250</span></td>
+                <td><span class="savings-green">$3,000</span></td>
+                <td><span class="savings-green">3.0%</span></td>
+              </tr>
+              <tr class="total-row">
+                <td><strong>Total AWS Spend</strong></td>
+                <td><strong>$45,200</strong></td>
+                <td><strong>$43,750</strong></td>
+                <td><strong><span class="savings-green">$1,450</span></strong></td>
+                <td><strong><span class="savings-green">$17,400</span></strong></td>
+                <td><strong><span class="savings-green">3.2%</span></strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Recent Reports -->
+  <div class="recent-reports">
+    <h3>Report History</h3>
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Report Name</th>
+          <th>Type</th>
+          <th>Generated</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monthly Cost Analysis - March 2026</td>
+          <td>PDF</td>
+          <td>Today</td>
+          <td><a href="#" class="link"><i class="fas fa-download"></i> Download</a></td>
+        </tr>
+        <tr>
+          <td>EC2 Optimization Report - Feb 2026</td>
+          <td>PDF</td>
+          <td>Feb 28, 2026</td>
+          <td><a href="#" class="link"><i class="fas fa-download"></i> Download</a></td>
+        </tr>
+        <tr>
+          <td>Savings Action Plan Q1</td>
+          <td>PDF</td>
+          <td>Feb 15, 2026</td>
+          <td><a href="#" class="link"><i class="fas fa-download"></i> Download</a></td>
+        </tr>
+        <tr>
+          <td>AWS Cost Export - January</td>
+          <td>CSV</td>
+          <td>Feb 1, 2026</td>
+          <td><a href="#" class="link"><i class="fas fa-download"></i> Download</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </section>
+
+  </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="final.js"></script>
+</body>
+
+</html>
