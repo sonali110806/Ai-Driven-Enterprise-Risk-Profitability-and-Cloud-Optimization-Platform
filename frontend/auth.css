@@ -1,0 +1,333 @@
+body{
+  margin:0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:#f5f7fb;
+  color:#1f2a44;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 60px;
+  background:white;
+  border-bottom:1px solid #e6e9f2;
+}
+
+.logo{
+  font-weight:700;
+  font-size:20px;
+  color:#1f3c88;
+}
+
+.container-center{
+  text-align:center;
+  margin-top:60px;
+}
+
+.main-title{
+  font-size:36px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.sub-title{
+  color:#6b7280;
+  margin-bottom:40px;
+}
+
+.card-wrapper{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+}
+
+.select-card{
+  width:380px;
+  background:white;
+  border-radius:16px;
+  padding:35px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  text-align:center;
+  border:1px solid #e6e9f2;
+}
+
+.select-card.recommended{
+  border:2px solid #3b5bdb;
+}
+
+.icon-box{
+  width:70px;
+  height:70px;
+  margin:auto;
+  background:#e9efff;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  color:#3b5bdb;
+}
+
+.card-title{
+  font-size:22px;
+  font-weight:700;
+  margin-top:20px;
+}
+
+.card-desc{
+  color:#6b7280;
+  margin:15px 0;
+  font-size:14px;
+}
+
+.feature{
+  text-align:left;
+  font-size:14px;
+  margin:6px 0;
+}
+
+.btn-primary{
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#2b4dbf;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.btn-outline{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  background:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* FORM PAGE */
+
+.form-container{
+  width:700px;
+  margin:60px auto;
+  background:white;
+  padding:40px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-title{
+  text-align:center;
+  font-size:30px;
+  font-weight:700;
+}
+
+.form-sub{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:30px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  margin-top:6px;
+}
+
+.full{
+  grid-column:span 2;
+}
+
+.submit-btn{
+  width:100%;
+  padding:14px;
+  margin-top:20px;
+  border:none;
+  border-radius:8px;
+  background:#2b4dbf;
+  color:white;
+  font-weight:700;
+  font-size:15px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body{
+    background:#eef1f5;
+    color:#1d2b3a;
+}
+
+/* Top Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 60px;
+    background:white;
+    border-bottom:1px solid #e5e8ec;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-box{
+    width:36px;
+    height:36px;
+    background:#3c63f3;
+    border-radius:8px;
+}
+
+.logo-text{
+    font-weight:600;
+}
+
+.subtitle{
+    font-size:12px;
+    color:#7c8796;
+}
+
+.back{
+    color:#4d5d73;
+    text-decoration:none;
+}
+
+/* Center Container */
+
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-top:70px;
+}
+
+.icon{
+    width:50px;
+    height:50px;
+    border-radius:12px;
+    background:#e8eefc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    color:#3c63f3;
+}
+
+.title{
+    font-size:32px;
+    margin-top:20px;
+    font-weight:700;
+}
+
+.desc{
+    color:#6c7788;
+    margin-top:6px;
+}
+
+/* Card */
+
+.card{
+    margin-top:30px;
+    background:white;
+    width:420px;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* Form */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    font-size:14px;
+    font-weight:600;
+}
+
+input{
+    width:100%;
+    margin-top:6px;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #d8dee7;
+    font-size:14px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#3c63f3;
+}
+
+/* Checkbox row */
+
+.row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:14px;
+    margin:10px 0 18px;
+}
+
+.row label{
+    font-weight:400;
+}
+
+.row a{
+    color:#3c63f3;
+    text-decoration:none;
+}
+
+/* Button */
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:#8d96b9;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#6f7bb3;
+}
+
+/* Bottom text */
+
+.bottom{
+    text-align:center;
+    margin-top:20px;
+    font-size:14px;
+}
+
+.bottom a{
+    color:#3c63f3;
+    text-decoration:none;
+    font-weight:600;
+}

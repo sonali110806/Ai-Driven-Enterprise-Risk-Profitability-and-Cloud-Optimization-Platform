@@ -1,0 +1,16 @@
+app.get("/verifyProjects", async (req, res) => {
+  try {
+    const projects = await Project.find();
+
+    res.json({
+      message: "Projects verified successfully",
+      count: projects.length,
+      data: projects
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error verifying projects"
+    });
+  }
+});

@@ -1,0 +1,22 @@
+INPUT STRUCTURE:
+{
+ "project_data": {
+   "complexity": "High",
+   "timeline": 3,
+   "team_size": 15,
+   "budget": 150000,
+   "requirement_stability": "Moderate"
+ },
+ "cloud_data": {
+   "cloud_cost": "High",
+   "monthly_cost": 5000
+ }
+}
+
+TASK:
+Perform full analysis:
+1. Compute total risk and delay analysis.
+2. Estimate total cost (Dev + Cloud).
+3. Determine profit margin, profit category, and ROI.
+4. Generate project health metrics.
+5. Return structured JSON as per schema.

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskOptima AI - Enterprise Intelligence Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <span class="logo-icon">⚙️</span>
+                    <div class="logo-text">
+                        <h1>RiskOptima AI</h1>
+                        <p>Enterprise Intelligence Platform</p>
+                    </div>
+                </div>
+                <button class="exit-btn">Exit</button>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-step active" data-step="1">
+                    <div class="progress-number">1</div>
+                    <div class="progress-label">Project Details</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="progress-number">2</div>
+                    <div class="progress-label">Cloud Infrastructure</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="progress-number">3</div>
+                    <div class="progress-label">Analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                ✓ Form submitted successfully!
+            </div>
+
+            <!-- Step 1: Project Details -->
+            <div class="form-step active" id="step1">
+                <div class="step-header">
+                    <h2>Project Information</h2>
+                    <p>Provide details about your IT project for comprehensive risk analysis.</p>
+                </div>
+
+                <form id="projectForm" novalidate>
+                    <div class="form-group">
+                        <label for="projectName">
+                            Project Name
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Name of your IT project</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="projectName" 
+                            name="projectName" 
+                            placeholder="e.g., ERP System Migration"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectType">
+                            Project Type
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Select the type of project</span>
+                            </span>
+                        </label>
+                        <select id="projectType" name="projectType" required>
+                            <option value="">Select project type</option>
+                            <option value="web-application">Web Application</option>
+                            <option value="mobile-app">Mobile App</option>
+                            <option value="cloud-migration">Cloud Migration</option>
+                            <option value="data-analysis">Data Analysis</option>
+                            <option value="others">Others</option>
+                        </select>
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalBudget">
+                            Total Budget (USD / INR)
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Project budget in USD</span>
+                            </span>
+                        </label>
+                        <div class="budget-input-group">
+                            <div class="currency-input">
+                                <input 
+                                    type="number" 
+                                    id="totalBudgetUSD" 
+                                    name="totalBudgetUSD" 
+                                    placeholder="USD"
+                                    min="0"
+                                    required
+                                />
+                                <span class="currency-label">USD</span>
+                            </div>
+                            <div class="currency-divider">→</div>
+                            <div class="currency-input">
+                                <input 
+                                    type="number" 
+                                    id="totalBudgetINR" 
+                                    name="totalBudgetINR" 
+                                    placeholder="INR"
+                                    min="0"
+                                    disabled
+                                />
+                                <span class="currency-label">INR</span>
+                            </div>
+                        </div>
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duration">
+                            Duration (Months)
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Project duration in months</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="duration" 
+                            name="duration" 
+                            placeholder="e.g., 12"
+                            min="1"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="teamSize">
+                            Team Size
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Number of team members</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="teamSize" 
+                            name="teamSize" 
+                            placeholder="e.g., 15"
+                            min="1"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complexityLevel">
+                            Complexity Level
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Select complexity level</span>
+                            </span>
+                        </label>
+                        <select id="complexityLevel" name="complexityLevel" required>
+                            <option value="">Select complexity</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="very-high">Very High</option>
+                        </select>
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stakeholders">
+                            Number of Stakeholders
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Number of key stakeholders</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="stakeholders" 
+                            name="stakeholders" 
+                            placeholder="e.g., 8"
+                            min="1"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectDescription">
+                            Project Description
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Describe project objectives, scope, and deliverables</span>
+                            </span>
+                        </label>
+                        <textarea 
+                            id="projectDescription" 
+                            name="projectDescription" 
+                            placeholder="Describe the project objectives, scope, and key deliverables..."
+                        ></textarea>
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-back" onclick="goToHome()">← Back to Home</button>
+                        <button type="submit" class="btn btn-continue">Continue to Cloud Setup →</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2: AWS Cloud Infrastructure -->
+            <div class="form-step" id="step2">
+                <div class="step-header">
+                    <h2>AWS Cloud Infrastructure</h2>
+                    <p>Provide your AWS environment details for cost optimization analysis.</p>
+                </div>
+
+                <form id="awsForm" novalidate>
+                    <div class="section-title">AWS Account Information</div>
+
+                    <div class="form-group">
+                        <label for="accountId">
+                            AWS Account ID
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">12-digit AWS account ID</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="accountId" 
+                            name="accountId" 
+                            placeholder="e.g., 123456789012"
+                            maxlength="12"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlySpend">
+                            Monthly AWS Spend
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Your average monthly AWS spending</span>
+                            </span>
+                        </label>
+                        <div class="budget-input-group">
+                            <div class="currency-input">
+                                <input 
+                                    type="number" 
+                                    id="monthlySpendUSD" 
+                                    name="monthlySpendUSD" 
+                                    placeholder="USD"
+                                    min="0"
+                                    required
+                                />
+                                <span class="currency-label">USD</span>
+                            </div>
+                            <div class="currency-divider">→</div>
+                            <div class="currency-input">
+                                <input 
+                                    type="number" 
+                                    id="monthlySpendINR" 
+                                    name="monthlySpendINR" 
+                                    placeholder="INR"
+                                    min="0"
+                                    disabled
+                                />
+                                <span class="currency-label">INR</span>
+                            </div>
+                        </div>
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ec2Instances">
+                            Total EC2 Instances
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Total number of running EC2 instances</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="ec2Instances" 
+                            name="ec2Instances" 
+                            placeholder="e.g., 25"
+                            min="0"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="s3Storage">
+                            S3 Storage (GB)
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Total S3 storage in gigabytes</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="s3Storage" 
+                            name="s3Storage" 
+                            placeholder="e.g., 5000"
+                            min="0"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rdsInstances">
+                            RDS Instances
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Number of RDS database instances</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="rdsInstances" 
+                            name="rdsInstances" 
+                            placeholder="e.g., 5"
+                            min="0"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lambdaInvocations">
+                            Monthly Lambda Invocations
+                            <span class="required">*</span>
+                            <span class="tooltip">
+                                <span class="info-icon">ℹ️</span>
+                                <span class="tooltiptext">Average monthly Lambda function invocations</span>
+                            </span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="lambdaInvocations" 
+                            name="lambdaInvocations" 
+                            placeholder="e.g., 1000000"
+                            min="0"
+                            required
+                        />
+                        <div class="error-message"></div>
+                    </div>
+
+                    <div class="section-title">EC2 Instance Details (Optional)</div>
+
+                    <div class="instance-section">
+                        <div class="instance-header">
+                            <h3>Instance #1</h3>
+                            <button type="button" class="add-instance-btn" id="addInstanceBtn">+ Add Instance</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instanceType">
+                                Instance Type
+                                <span class="tooltip">
+                                    <span class="info-icon">ℹ️</span>
+                                    <span class="tooltiptext">EC2 instance type</span>
+                                </span>
+                            </label>
+                            <select id="instanceType" name="instanceType">
+                                <option value="">Select type</option>
+                                <option value="t2.micro">t2.micro</option>
+                                <option value="t2.small">t2.small</option>
+                                <option value="t2.medium">t2.medium</option>
+                                <option value="t3.micro">t3.micro</option>
+                                <option value="t3.small">t3.small</option>
+                                <option value="m5.large">m5.large</option>
+                                <option value="m5.xlarge">m5.xlarge</option>
+                                <option value="c5.large">c5.large</option>
+                                <option value="c5.xlarge">c5.xlarge</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">
+                                Region
+                                <span class="tooltip">
+                                    <span class="info-icon">ℹ️</span>
+                                    <span class="tooltiptext">AWS region where instance runs</span>
+                                </span>
+                            </label>
+                            <select id="region" name="region">
+                                <option value="">Select region</option>
+                                
+                                <optgroup label="India Regions">
+                                    <option value="ap-south-1">ap-south-1 (Mumbai)</option>
+                                    <option value="ap-south-2">ap-south-2 (Hyderabad)</option>
+                                </optgroup>
+
+                                <optgroup label="Asia Pacific">
+                                    <option value="ap-southeast-1">ap-southeast-1 (Singapore)</option>
+                                    <option value="ap-southeast-2">ap-southeast-2 (Sydney)</option>
+                                    <option value="ap-northeast-1">ap-northeast-1 (Tokyo)</option>
+                                    <option value="ap-northeast-2">ap-northeast-2 (Seoul)</option>
+                                </optgroup>
+
+                                <optgroup label="North America">
+                                    <option value="us-east-1">us-east-1 (N. Virginia)</option>
+                                    <option value="us-east-2">us-east-2 (Ohio)</option>
+                                    <option value="us-west-1">us-west-1 (N. California)</option>
+                                    <option value="us-west-2">us-west-2 (Oregon)</option>
+                                    <option value="ca-central-1">ca-central-1 (Canada)</option>
+                                </optgroup>
+
+                                <optgroup label="Europe">
+                                    <option value="eu-west-1">eu-west-1 (Ireland)</option>
+                                    <option value="eu-west-2">eu-west-2 (London)</option>
+                                    <option value="eu-central-1">eu-central-1 (Frankfurt)</option>
+                                    <option value="eu-north-1">eu-north-1 (Stockholm)</option>
+                                </optgroup>
+
+                                <optgroup label="South America">
+                                    <option value="sa-east-1">sa-east-1 (São Paulo)</option>
+                                </optgroup>
+
+                                <optgroup label="Middle East & Africa">
+                                    <option value="me-south-1">me-south-1 (Bahrain)</option>
+                                    <option value="af-south-1">af-south-1 (Cape Town)</option>
+                                </optgroup>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="runningHours">
+                                Running Hours/Day
+                                <span class="tooltip">
+                                    <span class="info-icon">ℹ️</span>
+                                    <span class="tooltiptext">Hours per day instance is running</span>
+                                </span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="runningHours" 
+                                name="runningHours" 
+                                placeholder="24"
+                                min="0"
+                                max="24"
+                            />
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpuUtilization">
+                                Avg CPU Utilization %
+                                <span class="tooltip">
+                                    <span class="info-icon">ℹ️</span>
+                                    <span class="tooltiptext">Average CPU utilization percentage</span>
+                                </span>
+                            </label>
+                            <input 
+                                type="number" 
+                                id="cpuUtilization" 
+                                name="cpuUtilization" 
+                                placeholder="15"
+                                min="0"
+                                max="100"
+                            />
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn btn-back" onclick="previousStep()">← Back to Project Details</button>
+                        <button type="submit" class="btn btn-continue">Run AI Analysis →</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

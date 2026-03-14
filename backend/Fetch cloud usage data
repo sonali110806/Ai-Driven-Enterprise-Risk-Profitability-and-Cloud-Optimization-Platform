@@ -1,0 +1,8 @@
+app.get("/getCloudUsage", async (req, res) => {
+  try {
+    const cloudData = await CloudUsage.find();
+    res.json(cloudData);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching cloud usage" });
+  }
+});

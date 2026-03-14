@@ -1,0 +1,16 @@
+app.get("/verifyCloudUsage", async (req, res) => {
+  try {
+    const cloudData = await CloudUsage.find();
+
+    res.json({
+      message: "Cloud usage verified successfully",
+      count: cloudData.length,
+      data: cloudData
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error verifying cloud usage"
+    });
+  }
+});
