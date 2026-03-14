@@ -1,0 +1,14 @@
+{
+  "project_name": "Digital Banking Platform",
+  "risk_score": 72,
+  "profitability_score": 65,
+  "delay_probability": 0.6,
+  "cost_overrun_probability": 0.55,
+  "predicted_risk_level": "Medium",
+  "predicted_profit": 180000,
+  "ai_suggestions": [
+    "Increase team size",
+    "Optimize cloud usage",
+    "Extend timeline by 1 month"
+  ]
+}

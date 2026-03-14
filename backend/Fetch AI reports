@@ -1,0 +1,8 @@
+app.get("/getAIReports", async (req, res) => {
+  try {
+    const reports = await AIReport.find();
+    res.json(reports);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching AI reports" });
+  }
+});
