@@ -1,0 +1,16 @@
+app.get("/verifyAIReports", async (req, res) => {
+  try {
+    const reports = await AIReport.find();
+
+    res.json({
+      message: "AI reports verified successfully",
+      count: reports.length,
+      data: reports
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error verifying AI reports"
+    });
+  }
+});
